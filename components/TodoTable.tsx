@@ -31,7 +31,7 @@ export function TableTodo({todos}:IProps) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {todos.map((todo) => (
+        {todos.length && todos.map((todo) => (
           <TableRow key={todo.id}>
             <TableCell className="font-medium">{todo.id}</TableCell>
             <TableCell>{todo.title}</TableCell>
@@ -46,7 +46,7 @@ export function TableTodo({todos}:IProps) {
       <TableFooter>
         <TableRow>
           <TableCell colSpan={4}>Total</TableCell>
-          <TableCell className="text-right">{todos.length}</TableCell>
+          <TableCell className="text-right">{todos.length ? todos.length : 'you Do nt Any Todo Yet !!'}</TableCell>
         </TableRow>
       </TableFooter>
     </Table>

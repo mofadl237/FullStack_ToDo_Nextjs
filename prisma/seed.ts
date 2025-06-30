@@ -7,7 +7,8 @@ async function main() {
   await prisma.todo.create({
     data:{
       title:'Third ToDo',
-      body:'Description Second Todo'
+      body:'Description Second Todo',
+      user_id:'Empty'
     }
   })
 }

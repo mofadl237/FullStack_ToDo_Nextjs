@@ -28,18 +28,18 @@ import { z } from "zod"
 import { createTodoList } from "@/actions/todoAction"
 
 
-import { ReactNode, useState } from "react";
+import {  useState } from "react";
 import { formAddSchema } from "@/validation"
 import { Checkbox } from "./ui/checkbox"
+import { Plus } from "lucide-react"
 
 interface IProps{
-    textButton:ReactNode;
-    textHead:string;
+   userId:string  ;
 }
 
 
 
-export function ModelAddTodo({textButton,textHead}:IProps) {
+export function ModelAddTodo({userId}:IProps) {
   //1- state
   const [open, setOpen] = useState(false)
   //2- handler
@@ -56,7 +56,7 @@ export function ModelAddTodo({textButton,textHead}:IProps) {
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formAddSchema>) {
       //when add error handler const {}= await createTodoList(values);
-      await createTodoList(values,'/');
+      await createTodoList(values,userId);
       form.reset()
       setOpen(false);
     }
@@ -66,11 +66,11 @@ export function ModelAddTodo({textButton,textHead}:IProps) {
     <Dialog open={open} onOpenChange={setOpen} >
      
         <DialogTrigger asChild>
-          <Button variant="outline" className="cursor-pointer ">{textButton}</Button>
+          <Button variant="outline" className="cursor-pointer "> <Plus /> New Todo</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>{textHead}</DialogTitle>
+            <DialogTitle>Add ToDo </DialogTitle>
             <DialogDescription>
               Make changes to your Todo here. Click save when you&apos;re
               done.

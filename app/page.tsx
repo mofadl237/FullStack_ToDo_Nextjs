@@ -1,27 +1,23 @@
 import { getTodoList } from "@/actions/todoAction";
-import { ModeToggle } from "@/components/DarkMode";
 import {  ModelAddTodo } from "@/components/ModelAddTodo";
 import { TableTodo } from "@/components/TodoTable";
+import { auth } from "@clerk/nextjs/server";
 
-import { Plus } from "lucide-react";
 
 export default async function Home() {
-  const todos = await getTodoList();
+  const {userId} = await auth();
+  const todos = await getTodoList(String(userId));
+  
   return (
-    <main className="container mx-auto space-y-3">
+    <main className=" container mx-auto space-y-3  ">
     
-      <ModeToggle  />
       
-      <div className="my-5 ms-7 ">
+      
+      <div className=" my-5 px-5">
         <ModelAddTodo
-
+          userId={String(userId)}
         
-          textHead="Add New ToDo"
-          textButton={
-            <>
-              <Plus /> New ToDo
-            </>
-          }
+         
           
         />
          <TableTodo todos={todos}/>
