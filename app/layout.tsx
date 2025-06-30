@@ -37,35 +37,40 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="antialiased">
-        <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <header className="container mx-auto">
-              <div className="flex justify-between items-center p-4 gap-4 h-16">
-                <ModeToggle />
-                <div>
-                  <SignedOut>
-                    <SignInButton />
-                    <SignUpButton>
-                      <button className="bg-[#68a042] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                        Sign Up
-                      </button>
-                    </SignUpButton>
-                  </SignedOut>
-                  <SignedIn>
-                    <UserButton />
-                  </SignedIn>
-                </div>
-              </div>
-            </header>
+        {process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ? (
+  <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <header className="container mx-auto">
+        <div className="flex justify-between items-center p-4 gap-4 h-16">
+          <ModeToggle />
+          <div>
+            <SignedOut >
+              <SignInButton  />
+              <SignUpButton>
+                <button className="bg-[#68a042] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer ms-4">
+                  Sign Up
+                </button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
+        </div>
+      </header>
 
-            {children}
-          </ThemeProvider>
-        </ClerkProvider>
+      {children}
+    </ThemeProvider>
+  </ClerkProvider>
+) : (
+  <>{children}</> // fallback لو المفتاح مش موجود
+)}
+
       </body>
     </html>
   )
