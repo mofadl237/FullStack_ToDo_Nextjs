@@ -8,7 +8,7 @@ async function main() {
     data:{
       title:'Third ToDo',
       body:'Description Second Todo',
-      user_id:'Empty'
+      user_id:''
     }
   })
 }
