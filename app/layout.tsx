@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="antialiased">
-        <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+        <ClerkProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
